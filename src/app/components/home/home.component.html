@@ -1,0 +1,79 @@
+<div class="page home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-title">
+                    <img class ="svg"  src="assets/svg/file.svg">
+                    <span>Todo List App</span>
+                </h2>
+            </div>
+            <div class="col-md-6">
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <input matInput  placeholder="Yapılacak yeni madde ekle" #newTodo>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="button" (click)="addTodo(newTodo)">Ekle</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12 ">
+                <mat-card class="d-flex">
+                    <div class="example-container">
+                        <h2>To do</h2>
+                      
+                        <div
+                          cdkDropList
+                          #todoList="cdkDropList"
+                          [cdkDropListData]="data.todo"
+                          [cdkDropListConnectedTo]="[doneList,loadingList]"
+                          class="example-list"
+                          (cdkDropListDropped)="drop($event)">
+                          <div class="example-box" *ngFor="let item of todo" cdkDrag>
+                            <img class="svg" src="assets/svg/clock.svg">
+                            {{item.todo}}</div>
+                        </div>
+                      </div>
+
+                      <div class="example-container">
+                        <h2>Loading</h2>
+                      
+                        <div
+                          cdkDropList
+                          #loadingList="cdkDropList"
+                          [cdkDropListData]="data.loading"
+                          [cdkDropListConnectedTo]="[todoList,doneList]"
+                          class="example-list"
+                          (cdkDropListDropped)="drop($event)">
+                          <div class="example-box" *ngFor="let item of data.loading" cdkDrag>
+                            <img class="svg" src="assets/svg/hourglass.svg">
+                            {{item.todo}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="example-container">
+                        <h2>Done</h2>
+                      
+                        <div
+                          cdkDropList
+                          #doneList="cdkDropList"
+                          [cdkDropListData]="data.done"
+                          [cdkDropListConnectedTo]="[todoList,loadingList]"
+                          class="example-list"
+                          (cdkDropListDropped)="drop($event)">
+                          <div class="example-box" *ngFor="let item of data.done" cdkDrag>
+                            <img class="svg" src="assets/svg/like.svg">
+                            {{item.todo}}</div>
+                        </div>
+                      </div>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center mt-2">
+              <small>Copyright 2020 Todo List App</small>
+            </div>
+        </div>
+    </div>
+</div>
