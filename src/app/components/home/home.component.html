@@ -45,13 +45,12 @@
                           [cdkDropListConnectedTo]="[todoList,doneList]"
                           class="example-list"
                           (cdkDropListDropped)="drop($event)">
-                          <div class="example-box" *ngFor="let item of data.loading" cdkDrag>
+                          <div class="example-box" *ngFor="let item of data.loading cdkDrag>
                             <img class="svg" src="assets/svg/hourglass.svg">
                             {{item.todo}}
                           </div>
                         </div>
                       </div>
-
                       <div class="example-container">
                         <h2>Done</h2>
                       
